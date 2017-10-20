@@ -18,7 +18,7 @@ def process_or_store(tweet):
     #f = codecs.open('tweetDump.json', 'a','utf-8') #writing to local file.
     try:
         response = firehose_client.put_record(
-            DeliveryStreamName='veera-twitter-data-stream',
+            DeliveryStreamName='bhargav-twitter-data-stream',
             Record={
                 'Data': json.dumps(tweet, ensure_ascii=False, encoding="utf-8")+'\n'
             }
@@ -29,8 +29,8 @@ def process_or_store(tweet):
     #f.write(json.dumps(tweet, ensure_ascii=False, encoding="utf-8")+'\n')
     #f.close()
 
-firehose_client = boto3.client('firehose', region_name="us-west-2")
-LOG_FILENAME = '/tmp/Twitter-sentiment-analytics.log'
+firehose_client = boto3.client('firehose', region_name="us-east-1")
+LOG_FILENAME = '/tmp/bhargav-twitter-data-stream.log'
 logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
 
 def main():
